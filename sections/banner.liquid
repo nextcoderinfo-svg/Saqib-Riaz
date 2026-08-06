@@ -41,6 +41,12 @@ background: #F5F5F5;
 </span></a>
   </div>
 </div>
+
+<div class="main-banner">
+  <div class="main-banner-image">
+    <img src="{{ section.settings.Banner-image | img_url : 'master' }}">
+  </div>
+</div>
 </div>
 </div>
 
@@ -67,7 +73,12 @@ background: #F5F5F5;
 "type": "url",
 "id": "button-url",
 "label": "Button-url"
-}
+},
+{
+  "type": "image_picker",
+"id": "Banner-image",
+"label": "Upload Banner Image"
+},
   ],
   "presets": [
     {
