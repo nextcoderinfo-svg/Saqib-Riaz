@@ -1,0 +1,41 @@
+<div class="main-banner">
+  <div class="banner-inner">
+<div class="top-navbar">
+  <div class="logo-wraper">
+    <div class="logo">
+      <img src="{{ section.settings.logo | img_url : 'master' }}">
+    </div>
+  </div>
+  <div class="caption">
+
+  {{ section.settings.caption }}
+  </div>
+  <div class="cta-button">
+    <a href="#">Choose Gift</a>
+  </div>
+</div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Banner",
+  "settings": [
+{
+"type": "image_picker",
+"id": "logo",
+"label": "Upload logo"
+},
+{
+"type": "text",
+"id": "caption",
+"label": "Caption Text"
+}
+  ],
+  "presets": [
+    {
+      "name": "Banner"
+    }
+  ]
+}
+{% endschema %}
