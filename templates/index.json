@@ -80,6 +80,7 @@
       "type": "banner",
       "name": "Banner",
       "settings": {
+        "logo": "shopify://shop_images/logo.png",
         "caption": "",
         "button-text": "",
         "button-url": ""
