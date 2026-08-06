@@ -83,7 +83,7 @@
       "name": "Banner",
       "settings": {
         "logo": "shopify://shop_images/logo.png",
-        "caption": "",
+        "caption": "Find the ideal gift for your loved ones.",
         "button-text": "",
         "button-url": ""
       }
