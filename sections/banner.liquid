@@ -43,6 +43,15 @@
 </span></a>
   </div>
 </div>
+
+<div class="banner-wraper">
+  <div class="banner-inner">
+    <div class="banner-image">
+      <img src="{{ section.settings.Bannerimage | img_url : 'master' }}">
+    </div>
+  </div>
+</div>
+
   </div>
 </div>
 
@@ -67,7 +76,12 @@
 "type": "url",
 "id": "button-url",
 "label": "Button URL"
-}
+},
+{
+"type": "image_picker",
+"id": "Bannerimage",
+"label": "Upload Banner Image"
+},
   ],
   "presets": [
     {
