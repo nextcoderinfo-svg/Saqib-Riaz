@@ -151,7 +151,9 @@
         "product_6xpJhR"
       ],
       "name": "Products Grid",
-      "settings": {}
+      "settings": {
+        "title": "Tisso vison in the wild"
+      }
     }
   },
   "order": [
