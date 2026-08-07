@@ -220,7 +220,7 @@
 						{% for option in product.options_with_values %}
 						{% if option.name contains 'Color' or option.name contains 'color' %}
 							<div class="colorvariant" data-option-position="{{ option.position }}">
-								<label class="option-label">{{ option.name }}</label>
+								<div class="option-label">{{ option.name }}</div>
 								<div class="option-values">
 									{% for value in option.values %}
 										<input
