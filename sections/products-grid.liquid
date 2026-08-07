@@ -226,21 +226,36 @@
 			</div>
 {% for option in product.options_with_values %}
 						{% if option.name contains 'Color' or option.name contains 'color' %}
-							<div class="colorvariant" data-option-position="{{ option.position }}">
-								<div class="option-label">{{ option.name }}</div>
-								<div class="option-values">
-									{% for value in option.values %}
-										<input
-											type="radio"
-											value="{{ value }}"
-											id="opt-{{ product.id }}-{{ option.position }}-{{ forloop.index }}"
-											name="opt-{{ product.id }}-{{ option.position }}"
-											
-										>
-										<label for="opt-{{ product.id }}-{{ option.position }}-{{ forloop.index }}" style=" {%if value contains 'Black' %}border-left: solid 5px #000;{%elsif value contains 'White' %}border-left: solid 5px #fff;{% endif %};">{{ value }}</label>
-									{% endfor %}
-								</div>
-							</div>
+						<div class="colorvariant" data-option-position="{{ option.position }}">
+  <div class="option-label">{{ option.name }}</div>
+  <div class="option-values">
+    {% for value in option.values %}
+      {% assign color_hex = '#ccc' %}
+      {% case value %}
+        {% when 'Black' %}{% assign color_hex = '#000000' %}
+        {% when 'White' %}{% assign color_hex = '#ffffff' %}
+        {% when 'Blue' %}{% assign color_hex = '#0000ff' %}
+        {% when 'Navy' %}{% assign color_hex = '#000080' %}
+        {% when 'Red' %}{% assign color_hex = '#ff0000' %}
+        {% when 'Green' %}{% assign color_hex = '#008000' %}
+        {% when 'Grey', 'Gray' %}{% assign color_hex = '#808080' %}
+        {% when 'Pink' %}{% assign color_hex = '#ffc0cb' %}
+        {% when 'Brown' %}{% assign color_hex = '#8b4513' %}
+        {% when 'Yellow' %}{% assign color_hex = '#ffff00' %}
+      {% endcase %}
+      <input
+        type="radio"
+        value="{{ value }}"
+        id="opt-{{ product.id }}-{{ option.position }}-{{ forloop.index }}"
+        name="opt-{{ product.id }}-{{ option.position }}"
+      >
+      <label
+        for="opt-{{ product.id }}-{{ option.position }}-{{ forloop.index }}"
+        style="border-left: 5px solid {{ color_hex }};"
+      >{{ value }}</label>
+    {% endfor %}
+  </div>
+</div>
 						{% else %}
 							<div class="sizevariant" data-option-position="{{ option.position }}">
 								<div class="option-label">{{ option.name }}</div>
