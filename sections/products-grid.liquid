@@ -235,7 +235,7 @@
 								<label class="option-lable">{{option.name }}</label>
 								<select class="qv-select">
 									<option value="">Choose your {{option.name }}
-									{% for value in option.value %}
+									{% for value in option.values %}
 										<option value="{{ value }}">{{ value }}</option>
 										{% endfor %}
 									</option>
