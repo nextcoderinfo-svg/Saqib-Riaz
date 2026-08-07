@@ -7,7 +7,7 @@
 	position: relative;
 }
 
-/* Text block (heading + paragraph) */
+
 .main-text-content {
 	position: absolute;
 	left: 0;
@@ -27,7 +27,7 @@
 	margin: 10px 0 0;
 }
 
-/* Image wrapper - button overlay is positioned relative to THIS, not the text */
+
 .image-wrap {
 	position: relative;
 }
@@ -37,7 +37,7 @@
 	object-fit: cover;
 }
 
-/* Button overlay - always sits on top of the image, bottom-anchored */
+
 .banner-button-overlay {
 	position: absolute;
 	left: 0;
@@ -80,9 +80,7 @@
 	}
 }
 
-/* ---------- Mobile ---------- */
-/* Heading + text drop into normal flow ABOVE the image.
-   Button stays absolutely positioned as an overlay on the image (bottom only). */
+
 @media only screen and (max-width: 749px) {
 	.main-text-content {
 		position: static;
