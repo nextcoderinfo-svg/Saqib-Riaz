@@ -52,6 +52,8 @@
 {% endfor %}
     </div>
     </div>
+     {%for block in section.blocks %}  
+            {% assign product = block.settings.product %} 
     <div class="quick-view-content">
         <div class="popupcontent">
             <div class="product-image"></div>
@@ -63,7 +65,7 @@
         </div>
     </div>
 </div>
-
+{% endfor %}
 
 {% schema %}
 {
