@@ -3,13 +3,18 @@
         <div class="grid-heading">
             <h2>Tisso vison in the wild</h2>
         </div>
+        <div class="grid-container">
+         {%for block in section.blocks %}  
+            {% assign product = block.settings.product %} 
         <div class="grid-box">
             <div class="product-container">
                 <div class="product-image">
-                    <img src="{{ }}">
+                    <img src="{{ product.feature_image | img_url : 'master' }}">
                 </div>
             </div>
         </div>
+{% endfor %}
+    </div>
     </div>
 </div>
 
