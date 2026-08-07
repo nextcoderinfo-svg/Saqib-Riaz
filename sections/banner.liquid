@@ -121,11 +121,7 @@
 					{% if section.settings.banner-image-mobile %}
 						<source media="(max-width: 749px)" srcset="{{ section.settings.banner-image-mobile | img_url: 'master' }}">
 					{% endif %}
-					<img
-						src="{{ section.settings.banner-image | img_url: 'master' }}"
-						alt="{{ section.settings.title | escape }}"
-						loading="lazy"
-					>
+					<img src="{{ section.settings.banner-image | img_url: 'master' }}">
 				</picture>
 			{% endif %}
 
