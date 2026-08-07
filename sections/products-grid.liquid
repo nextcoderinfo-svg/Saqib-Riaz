@@ -95,7 +95,9 @@
                 <span>{{ product.price | money}}</span>
                 <p>{{ product.description }}</p>
             </div>
-
+{% for option in product.option_with_values %}
+    {{ option.name }}
+    {% endfor %}
         </div>
     </div>
 </div>
