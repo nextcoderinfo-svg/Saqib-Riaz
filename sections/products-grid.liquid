@@ -231,7 +231,16 @@
 							</div>
 						</div>
 						{% else %}
-							
+							<div class="sizevariant" data-option-position="{{ option.position }}">
+								<label class="option-lable">{{option.name }}</label>
+								<select class="qv-select">
+									<option value="">Choose your {{option.name }}
+									{% for value in option.value %}
+										<option value="{{ value }}">{{ value }}</option>
+										{% endfor %}
+									</option>
+								</select>
+							</div>
 						{% endif %}
 					{% endfor %}
 
