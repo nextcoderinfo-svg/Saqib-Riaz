@@ -160,11 +160,13 @@ color: #f2ea1a;
 <script>
 var menuicon = document.getElementById('mobileMenuIcon');
 var mobilemenu = document.getElementById('mobileMenu');
-
+var iconHamburger  = document.getElementById('iconHamburger');
+var iconClose  = document.getElementById('iconHamburger');
 menuicon.addEventListener('click', function(){
 //alert('clicked');
 mobilemenu.classList.toggle('active');
-
+iconHamburger.classList.toggle('iconClose');
+iconClose.classList.toggle('icon-close');
 });
 
 </script>
