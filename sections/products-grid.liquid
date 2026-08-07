@@ -99,7 +99,7 @@
                 <p>{{ product.description }}</p>
             </div>
 {% for option in product.options_with_values %}
-    {% if option.name contains 'Color' or 'color' %}
+    {% if option.name contains 'Color' or option.name contains 'color' %}
     {{ option.name }}
     <div class="colorvariant">
         {% for value in option.values %}
