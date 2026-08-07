@@ -354,6 +354,7 @@
 
 		addBtn.addEventListener('click', function () {
 			var id = addBtn.dataset.variantId;
+			console.log(id);
 			if (!id) return;
 			label.textContent = 'Adding...';
 			fetch('/cart/add.js', {
