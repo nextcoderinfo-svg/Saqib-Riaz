@@ -55,7 +55,7 @@
 	transform: translateY(-50%);
 	background: #fff;
 	padding: 24px;
-
+	display: none;
 	z-index: 999;
 }
 .quick-view-content.active {
@@ -213,104 +213,166 @@
 					<span class="qv-price">{{ product.price | money }}</span>
 					<p>{{ product.description }}</p>
 
-				
-				</div>
-
-
-			</div>
-	{% for option in product.options_with_values %}
+					{% for option in product.options_with_values %}
 						{% if option.name contains 'Color' or option.name contains 'color' %}
-						<div class="colorvairant" data-option-position="{{ option.position }}">
-							<label class="option-lable">{{option.name }}</label>
-							<div class="option-values">
-
-								{%for value in option.values %}
-									<input type=" radio" value="{{value }}" id="opt-{{product.id }}-{{option.position }}-{{forloop.index }}" name="option-{{product.id }}-{{ option.position}}">
-									<label for="opt-{{product.id }}-{{option.position }}-{{forloop.index }}"{{value }}></label>
+							<div class="colorvariant" data-option-position="{{ option.position }}">
+								<label class="option-label">{{ option.name }}</label>
+								<div class="option-values">
+									{% for value in option.values %}
+										<input
+											type="radio"
+											value="{{ value }}"
+											id="opt-{{ product.id }}-{{ option.position }}-{{ forloop.index }}"
+											name="opt-{{ product.id }}-{{ option.position }}"
+											{% if forloop.first %}checked{% endif %}
+										>
+										<label for="opt-{{ product.id }}-{{ option.position }}-{{ forloop.index }}">{{ value }}</label>
 									{% endfor %}
+								</div>
 							</div>
-						</div>
 						{% else %}
 							<div class="sizevariant" data-option-position="{{ option.position }}">
-								<label class="option-lable">{{option.name }}</label>
+								<label class="option-label">{{ option.name }}</label>
 								<select class="qv-select">
-									<option value="">Choose your {{option.name }}
+									<option value="">Choose your {{ option.name }}</option>
 									{% for value in option.values %}
 										<option value="{{ value }}">{{ value }}</option>
-										{% endfor %}
-									</option>
+									{% endfor %}
 								</select>
 							</div>
 						{% endif %}
 					{% endfor %}
 
-					<button type="button" class="add-to-cart-btn jsadd-to-cart">
-						<span>Add to cart</span>
+					<button type="button" class="add-to-cart-btn js-add-to-cart" disabled>
+						<span class="btn-label">Add to cart</span> <span>&rarr;</span>
 					</button>
-			
-		
+				</div>
+			</div>
+
+			<!-- Full variant data rendered directly by Liquid - no JSON parsing needed in JS -->
+			<div class="variant-list" hidden>
+				{% for variant in product.variants %}
+					<div
+						class="variant-item"
+						data-option1="{{ variant.option1 }}"
+						data-option2="{{ variant.option2 }}"
+						data-id="{{ variant.id }}"
+						data-price="{{ variant.price }}"
+						data-available="{{ variant.available }}"
+						data-image="{{ variant.featured_image.src | default: product.featured_image | img_url: 'master' }}"
+					></div>
+				{% endfor %}
+			</div>
 		</div>
 	{% endif %}
 {% endfor %}
+
 <script>
+(function () {
 	var overlay = document.getElementById('qvOverlay');
-	function closeAll(){
-	document.querySelectorAll('.quick-view-content.active').forEach(function (el){
-	el.classList.remove('active');
-	document.body.style.overflow = '';
+
+	function closeAll() {
+		document.querySelectorAll('.quick-view-content.active').forEach(function (el) {
+			el.classList.remove('active');
+		});
+		overlay.classList.remove('active');
+		document.body.style.overflow = '';
 	}
-	document.querySelectorAll('.js-qv-open').forEach(function (btn){
-	btn.addEventListner('click', function(){
-	closeAll();
-	var target = document.getElementById(btn.dataset.target);
-	if(target){
-	target.classList.add('active');
-	}
+
+	document.querySelectorAll('.js-qv-open').forEach(function (btn) {
+		btn.addEventListener('click', function () {
+			closeAll();
+			var target = document.getElementById(btn.dataset.target);
+			if (target) {
+				target.classList.add('active');
+				overlay.classList.add('active');
+				document.body.style.overflow = 'hidden';
+			}
+		});
 	});
 
-document.querySelectorAll('.js-qv-close').forEach(function (btn){
-btn.addEventListner('click',closeAll);
-
-});
-document.querySelectorAll('.quick-view-content').forEach(function (popup){
-var itmes = popup.querySelectorAll('variant-item');
-//console.log(itmes);
-var wraps = popup.querySelectorAll('[data-option-position]');
-var priceEl = popup.querySelectorAll('qv-price');
-var imageEl = popup.querySelectorAll('qv-image');
-var addBtn = popup.querySelectorAll('btn-label');
-function valueOf(wrap){
-var radio = wrap.querySelectorAll('input[type="radio"]: checked');
-if (radio) return radio.value;
-var select = wrap.querySelectorAll('select');
-return select ? select.value;
-
-}
-});
-
+	document.querySelectorAll('.js-qv-close').forEach(function (btn) {
+		btn.addEventListener('click', closeAll);
 	});
-	
+	overlay.addEventListener('click', closeAll);
+	document.addEventListener('keydown', function (e) {
+		if (e.key === 'Escape') closeAll();
+	});
 
-add Btn.addEventListner('click', function(){
-var id = addBtn.dataset.variantId;
-console.log(itmes);
-fetch('/cart/add.js',{
-method : 'POST',
-headers: {
-'contnet-Type': 'application/json'
-},
-body: JSON.stringify({items: [{id: id , quantity: 1}]})
-.then(function (r){return r.json();})
-.then(function (){
-label.textContent = 'added';
-settimeout (function(){
-label.textContent = 'add to Cart'; 1500);}
-})
-});
-})
-});
+	document.querySelectorAll('.quick-view-content').forEach(function (popup) {
+		var items = popup.querySelectorAll('.variant-item');
+		var wraps = popup.querySelectorAll('[data-option-position]');
+		var priceEl = popup.querySelector('.qv-price');
+		var imageEl = popup.querySelector('.qv-image');
+		var addBtn = popup.querySelector('.js-add-to-cart');
+		var label = addBtn.querySelector('.btn-label');
+
+		function valueOf(wrap) {
+			var radio = wrap.querySelector('input[type="radio"]:checked');
+			if (radio) return radio.value;
+			var select = wrap.querySelector('select');
+			return select ? select.value : '';
+		}
+
+		function update() {
+			var values = {};
+			var complete = true;
+
+			wraps.forEach(function (wrap) {
+				var val = valueOf(wrap);
+				if (!val) complete = false;
+				values[wrap.dataset.optionPosition] = val;
+			});
+
+			var match = null;
+			if (complete) {
+				items.forEach(function (item) {
+					var isMatch = Object.keys(values).every(function (pos) {
+						return item.dataset['option' + pos] === values[pos];
+					});
+					if (isMatch) match = item;
+				});
+			}
+
+			if (match) {
+				priceEl.textContent = '$' + (match.dataset.price / 100).toFixed(2);
+				imageEl.src = match.dataset.image;
+				addBtn.disabled = match.dataset.available !== 'true';
+				addBtn.dataset.variantId = match.dataset.id;
+				label.textContent = match.dataset.available === 'true' ? 'Add to cart' : 'Sold out';
+			} else {
+				addBtn.disabled = true;
+				addBtn.dataset.variantId = '';
+				label.textContent = 'Add to cart';
+			}
+		}
+
+		wraps.forEach(function (wrap) {
+			wrap.addEventListener('change', update);
+		});
+		update();
+
+		addBtn.addEventListener('click', function () {
+			var id = addBtn.dataset.variantId;
+			if (!id) return;
+			label.textContent = 'Adding...';
+			fetch('/cart/add.js', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ items: [{ id: id, quantity: 1 }] })
+			})
+				.then(function (r) { return r.json(); })
+				.then(function () {
+					label.textContent = 'Added!';
+					setTimeout(function () { label.textContent = 'Add to cart'; }, 1500);
+				})
+				.catch(function () {
+					label.textContent = 'Error - try again';
+				});
+		});
+	});
+})();
 </script>
-
 
 {% schema %}
 {
