@@ -92,7 +92,7 @@
             </div>
             <div class="product-info">
                 <h3>{{ product.title }}</h3>
-                <span>{{ product.price }}</span>
+                <span>{{ product.price | money}}</span>
                 <p>{{ product.description }}</p>
             </div>
             {% for option in product.option_with_values %}
