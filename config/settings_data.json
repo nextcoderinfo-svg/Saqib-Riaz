@@ -144,7 +144,7 @@
         "settings": {
           "logo": "shopify://shop_images/logo.png",
           "caption": "",
-          "button-text": "",
+          "button-text": "Choose Gift",
           "button-url": ""
         }
       }
