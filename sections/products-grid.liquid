@@ -215,7 +215,8 @@
 
 		
 		</div>
-					{% for option in product.options_with_values %}
+		<div class="varaint-wraper">
+						{% for option in product.options_with_values %}
 						{% if option.name contains 'Color' or option.name contains 'color' %}
 							<div class="colorvariant" data-option-position="{{ option.position }}">
 								<label class="option-label">{{ option.name }}</label>
@@ -264,6 +265,7 @@
 					></div>
 				{% endfor %}
 			</div>
+		</div>
 	{% endif %}
 {% endfor %}
 
