@@ -98,10 +98,17 @@
           "settings": {
             "product": "black-leather-bag"
           }
+        },
+        "product_jrqR99": {
+          "type": "product",
+          "settings": {
+            "product": "blue-silk-tuxedo"
+          }
         }
       },
       "block_order": [
-        "product_tiiiEJ"
+        "product_tiiiEJ",
+        "product_jrqR99"
       ],
       "name": "Products Grid",
       "settings": {}
