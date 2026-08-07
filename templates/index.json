@@ -113,32 +113,32 @@
           "type": "product",
           "settings": {
             "product": "chequered-red-shirt",
-            "x_position": 50,
-            "y_position": 50
+            "x_position": 51,
+            "y_position": 23
           }
         },
         "product_7nLfUn": {
           "type": "product",
           "settings": {
             "product": "classic-leather-jacket",
-            "x_position": 50,
-            "y_position": 50
+            "x_position": 65,
+            "y_position": 28
           }
         },
         "product_6jwdbz": {
           "type": "product",
           "settings": {
             "product": "classic-varsity-top",
-            "x_position": 50,
-            "y_position": 50
+            "x_position": 46,
+            "y_position": 41
           }
         },
         "product_6xpJhR": {
           "type": "product",
           "settings": {
             "product": "dark-denim-top",
-            "x_position": 50,
-            "y_position": 50
+            "x_position": 61,
+            "y_position": 63
           }
         }
       },
