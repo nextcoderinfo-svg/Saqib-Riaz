@@ -272,7 +272,17 @@ btn.addEventListner('click',closeAll);
 });
 document.querySelectorAll('.quick-view-content').forEach(function (popup){
 var itmes = popup.querySelectorAll('variant-item');
-console.log(itmes);
+//console.log(itmes);
+var wraps = popup.querySelectorAll('[data-option-position]');
+var priceEl = popup.querySelectorAll('qv-price');
+var imageEl = popup.querySelectorAll('qv-image');
+var addBtn = popup.querySelectorAll('btn-label');
+function valueOf(wrap){
+var radio = wrap.querySelectorAll('input[type="radio"]: checked');
+if (radio) return radio.value;
+var select = wrap.querySelectorAll('select');
+
+}
 });
 
 	});
