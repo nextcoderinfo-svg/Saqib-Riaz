@@ -86,7 +86,11 @@
         "caption": "Find the ideal gift for your loved ones.",
         "button-text": "Choose Gift",
         "button-url": "",
-        "banner-image": "shopify://shop_images/Group_1000008197.png"
+        "banner-image": "shopify://shop_images/Group_1000008197.png",
+        "title": "The Gift Guide",
+        "content": "",
+        "shop-btn-text": "",
+        "shop-btn-url": ""
       }
     }
   },
