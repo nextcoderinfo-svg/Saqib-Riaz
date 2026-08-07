@@ -213,14 +213,10 @@
 					<span class="qv-price">{{ product.price | money }}</span>
 					<p>{{ product.description }}</p>
 
-		
-		</div>
-	</div>
-		<div class="varaint-wraper">
-						{% for option in product.options_with_values %}
+					{% for option in product.options_with_values %}
 						{% if option.name contains 'Color' or option.name contains 'color' %}
 							<div class="colorvariant" data-option-position="{{ option.position }}">
-								<div class="option-label">{{ option.name }}</div>
+								<label class="option-label">{{ option.name }}</label>
 								<div class="option-values">
 									{% for value in option.values %}
 										<input
@@ -266,8 +262,7 @@
 					></div>
 				{% endfor %}
 			</div>
-	
-
+		</div>
 	{% endif %}
 {% endfor %}
 
