@@ -220,15 +220,21 @@
 			</div>
 	{% for option in product.options_with_values %}
 						{% if option.name contains 'Color' or option.name contains 'color' %}
-						
+						<div class="colorvairant" data-option-position="{{ option.position }}">
+							<label class="option-lable">{{option.name }}</label>
+							<div class="option-values">
+
+								{%for value in option.values %}
+									<input type=" radio" value="{{value }}" id="opt-{{product.id }}-{{option.position }}-{{forloop.index }}" name="option-{{product.id }}-{{ option.position}}">
+									{% endfor %}
+							</div>
+						</div>
 						{% else %}
 							
 						{% endif %}
 					{% endfor %}
 
-					<button type="button" class="add-to-cart-btn js-add-to-cart" disabled>
-						<span class="btn-label">Add to cart</span> <span>&rarr;</span>
-					</button>
+					
 			
 		
 		</div>
