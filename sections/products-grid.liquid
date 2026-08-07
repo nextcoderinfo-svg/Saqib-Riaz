@@ -100,8 +100,9 @@
             </div>
 {% for option in product.options_with_values %}
     {% if option.name contains 'Color' or option.name contains 'color' %}
-    {{ option.name }}
+   
     <div class="colorvariant">
+         {{ option.name }}
         {% for value in option.values %}
             <input type="radio" value="{{ value }}" id="{{ value }}" name="{{ option.name }}">
             <label for="{{ value }}">{{ value }}</label>
