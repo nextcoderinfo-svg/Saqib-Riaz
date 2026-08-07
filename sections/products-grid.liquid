@@ -212,8 +212,9 @@
 					<h3>{{ product.title }}</h3>
 					<span class="qv-price">{{ product.price | money }}</span>
 					<p>{{ product.description }}</p>
-
-					{% for option in product.options_with_values %}
+				</div>
+			</div>
+{% for option in product.options_with_values %}
 						{% if option.name contains 'Color' or option.name contains 'color' %}
 							<div class="colorvariant" data-option-position="{{ option.position }}">
 								<label class="option-label">{{ option.name }}</label>
@@ -246,9 +247,6 @@
 					<button type="button" class="add-to-cart-btn js-add-to-cart" disabled>
 						<span class="btn-label">Add to cart</span> <span>&rarr;</span>
 					</button>
-				</div>
-			</div>
-
 			<div class="variant-list" hidden>
 				{% for variant in product.variants %}
 					<div
