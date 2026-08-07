@@ -110,12 +110,33 @@
           "settings": {
             "product": "chequered-red-shirt"
           }
+        },
+        "product_7nLfUn": {
+          "type": "product",
+          "settings": {
+            "product": "classic-leather-jacket"
+          }
+        },
+        "product_6jwdbz": {
+          "type": "product",
+          "settings": {
+            "product": "classic-varsity-top"
+          }
+        },
+        "product_6xpJhR": {
+          "type": "product",
+          "settings": {
+            "product": "dark-denim-top"
+          }
         }
       },
       "block_order": [
         "product_tiiiEJ",
         "product_jrqR99",
-        "product_Vtnf7j"
+        "product_Vtnf7j",
+        "product_7nLfUn",
+        "product_6jwdbz",
+        "product_6xpJhR"
       ],
       "name": "Products Grid",
       "settings": {}
