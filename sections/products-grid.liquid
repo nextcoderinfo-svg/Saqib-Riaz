@@ -56,7 +56,11 @@
             {% assign product = block.settings.product %} 
     <div class="quick-view-content">
         <div class="popupcontent">
-            <div class="product-image"></div>
+            <div class="product-image">
+                 <div class="product-image">
+                    <img src="{{ product.featured_image | img_url : 'master' }}">
+                </div>
+            </div>
             <div class="product-info">
                 <h3>{{ product.title }}</h3>
                 <span>{{ product.price }}</span>
