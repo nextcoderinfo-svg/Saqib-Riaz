@@ -33,7 +33,7 @@
                     <img src="{{ product.featured_image | img_url : 'master' }}">
                 </div>
             </div>
-            <div class="quick-view"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div class="quick-view" style="left : {{ block.settings.x_position }}%;top:{{ block.settings.y_position }}; "><svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M4.98047 0.75V9.21154" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
 <path d="M0.75 4.98071H9.21154" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
 </svg>
