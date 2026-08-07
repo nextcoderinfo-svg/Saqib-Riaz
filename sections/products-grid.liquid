@@ -99,19 +99,6 @@
 .colorvariant .option-values {
 	display: flex;
 }
-.option-values label {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.color-swatch {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  border: 1px solid rgba(0,0,0,0.2);
-}
 .colorvariant input[type="radio"] {
 	position: absolute;
 	opacity: 0;
@@ -275,7 +262,7 @@
 				name="opt-{{ product.id }}-{{ option.position }}"
 			>
 			<label for="opt-{{ product.id }}-{{ option.position }}-{{ forloop.index }}">
-				<span class="color-swatch" style="background-color: {{ swatch_color }};"></span>
+				<span class="color-swatch-bar" style="background-color: {{ swatch_color }};"></span>
 				{{ value }}
 			</label>
 		{% endfor %}
