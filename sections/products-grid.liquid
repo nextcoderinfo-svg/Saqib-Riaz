@@ -265,8 +265,20 @@
 	target.classList.add('active');
 	}
 	});
+
+document.querySelectorAll('.js-qv-close').forEach(function (btn){
+btn.addEventListner('click',closeAll);
+
+});
+document.querySelectorAll('.quick-view-content').forEach(function (popup){
+var itmes = popup.querySelectorAll('variant-item');
+console.log(itmes);
+});
+
 	});
 	
+
+
 </script>
 
 
