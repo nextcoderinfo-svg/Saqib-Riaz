@@ -237,7 +237,7 @@
 											name="opt-{{ product.id }}-{{ option.position }}"
 											
 										>
-										<label for="opt-{{ product.id }}-{{ option.position }}-{{ forloop.index }}" style="border-left: solid 5px red;">{{ value }}</label>
+										<label for="opt-{{ product.id }}-{{ option.position }}-{{ forloop.index }}" style="border-left: solid 5px {%if value contains 'Black' %}#000{% endif %};">{{ value }}</label>
 									{% endfor %}
 								</div>
 							</div>
