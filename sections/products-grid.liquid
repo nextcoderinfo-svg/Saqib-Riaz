@@ -1,19 +1,13 @@
 <style>
-.close {
+    .close {
 	cursor: pointer;
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	z-index: 2;
 }
-.grid-container {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	gap: 16px;
+    .grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;gap: 16px;
 }
 .product-image img {
 	width: 100%;
-	display: block;
 }
 .grid-heading h2 {
 	font-size: 36px;
@@ -22,401 +16,153 @@
 	position: absolute;
 	background: #fff;
 	border-radius: 100%;
-	padding: 6px;
-	line-height: 0;
-	cursor: pointer;
-	transform: translate(-50%, -50%);
+	padding: 4px 4px;
+	line-height: 0;cursor: pointer;
 }
 .grid-box {
 	position: relative;
 }
-
-/* ---------------- Quick view popup ---------------- */
-.quick-view-overlay {
-	position: fixed;
-	inset: 0;
-	background: rgba(0, 0, 0, 0.5);
-	display: none;
-	z-index: 998;
-}
-.quick-view-overlay.active {
-	display: block;
+.product_image img{width: 100%;}
+.popupcontent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
 }
 .quick-view-content {
 	width: 500px;
-	max-width: 90vw;
-	max-height: 85vh;
-	overflow-y: auto;
 	margin: 0 auto;
 	position: fixed;
-	top: 50%;
 	left: 0;
 	right: 0;
-	transform: translateY(-50%);
+	overflow: hidden;
 	background: #fff;
-	padding: 24px;
-	display: none;
-	z-index: 999;
-}
-.quick-view-content.active {
-	display: block;
-}
-.popupcontent {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 15px;
-}
-.popupcontent .product-image img {
-	width: 100%;
 }
 .product-info p {
-	line-height: 16px;
-	font-size: 13px;
-	color: #444;
+  line-height: 16px;
 }
-.product-info h3 {
-	margin: 0 0 8px;
-}
-.product-info .qv-price {
-	display: block;
-	font-weight: 600;
-	margin-bottom: 12px;
-}
-.option-label {
-	display: block;
-	font-size: 12px;
-	text-transform: uppercase;
-	color: #666;
-	margin: 14px 0 6px;
-}
-.colorvariant .option-values {
-	display: flex;
-}
-.colorvariant input[type="radio"] {
+.close {
 	position: absolute;
-	opacity: 0;
-	width: 0;
-	height: 0;
+	right: 10px;
 }
 .colorvariant label {
-	border: solid 1px #ccc;
+	border: solid 1px;
 	width: 50%;
 	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 10px 0;
-	cursor: pointer;
-	margin: 0;
-	font-size: 13px;
 }
-.colorvariant input[type="radio"]:checked + label {
-	background: #000;
-	color: #fff;
-	border-color: #000;
+@media only screen and (max-width: 767px){
+    .grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
-.qv-select {
-	width: 100%;
-	padding: 10px;
-	border: 1px solid #ccc;
-	background: #fff;
-	font-size: 14px;
+.grid-heading h2 {
+	font-size: 24px;text-align: center;
 }
-.add-to-cart-btn {
-	width: 100%;
-	margin-top: 18px;
-	background: #000;
-	color: #fff;
-	border: none;
-	padding: 14px;
-	font-size: 14px;
-	letter-spacing: 0.03em;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 10px;
-}
-.add-to-cart-btn:disabled {
-	background: #999;
-	cursor: not-allowed;
-}
-
-@media only screen and (max-width: 767px) {
-	.grid-container {
-		grid-template-columns: 1fr 1fr;
-	}
-	.grid-heading h2 {
-		font-size: 24px;
-		text-align: center;
-	}
-	.popupcontent {
-		grid-template-columns: 1fr;
-	}
-	.quick-view-content {
-		padding: 16px;
-	}
 }
 </style>
-
-<div class="quick-view-overlay" id="qvOverlay"></div>
-
 <div class="grid-wraper">
-	<div class="grid-inner page-width">
-		<div class="grid-heading">
-			<h2>{{ section.settings.title }}</h2>
-		</div>
-		<div class="grid-container">
-			{% for block in section.blocks %}
-				{% assign product = block.settings.product %}
-				<div class="grid-box">
-					<div class="product-container">
-						<div class="product-image">
-							{% if product != blank %}
-								<img src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.title | escape }}">
-							{% endif %}
-						</div>
-					</div>
-					{% if product != blank %}
-						<div
-							class="quick-view js-qv-open"
-							data-target="quick-view-{{ forloop.index }}"
-							style="left: {{ block.settings.x_position }}%; top: {{ block.settings.y_position }}%;"
-						>
-							<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M4.98047 0.75V9.21154" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
-								<path d="M0.75 4.98071H9.21154" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
-							</svg>
-						</div>
-					{% endif %}
-				</div>
-			{% endfor %}
-		</div>
-	</div>
+    <div class="grid-inner page-width">
+        <div class="grid-heading">
+            <h2>{{section.settings.title }}</h2>
+        </div>
+        <div class="grid-container">
+         {%for block in section.blocks %}  
+            {% assign product = block.settings.product %} 
+        <div class="grid-box">
+            <div class="product-container">
+                <div class="product-image">
+                    <img src="{{ product.featured_image | img_url : 'master' }}">
+                </div>
+            </div>
+            <div class="quick-view" style="left : {{ block.settings.x_position }}%;top:{{ block.settings.y_position }}%; "><svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M4.98047 0.75V9.21154" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+<path d="M0.75 4.98071H9.21154" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+</svg>
 </div>
-
-{% for block in section.blocks %}
-	{% assign product = block.settings.product %}
-	{% if product != blank %}
-		<div class="quick-view-content" id="quick-view-{{ forloop.index }}">
-			<div class="close js-qv-close">
-				<svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M4.24219 4.24279L12.7275 12.7281" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
-					<path d="M4.24219 12.7278L12.7275 4.24249" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
-				</svg>
-			</div>
-			<div class="popupcontent">
-				<div class="product-image">
-					<img class="qv-image" src="{{ product.featured_image | img_url: 'master' }}" alt="{{ product.title | escape }}">
-				</div>
-				<div class="product-info">
-					<h3>{{ product.title }}</h3>
-					<span class="qv-price">{{ product.price | money }}</span>
-					<p>{{ product.description }}</p>
-
-					{% for option in product.options_with_values %}
-						{% if option.name contains 'Color' or option.name contains 'color' %}
-							<div class="colorvariant" data-option-position="{{ option.position }}">
-								<label class="option-label">{{ option.name }}</label>
-								<div class="option-values">
-									{% for value in option.values %}
-										<input
-											type="radio"
-											value="{{ value }}"
-											id="opt-{{ product.id }}-{{ option.position }}-{{ forloop.index }}"
-											name="opt-{{ product.id }}-{{ option.position }}"
-											{% if forloop.first %}checked{% endif %}
-										>
-										<label for="opt-{{ product.id }}-{{ option.position }}-{{ forloop.index }}">{{ value }}</label>
-									{% endfor %}
-								</div>
-							</div>
-						{% else %}
-							<div class="sizevariant" data-option-position="{{ option.position }}">
-								<label class="option-label">{{ option.name }}</label>
-								<select class="qv-select">
-									<option value="">Choose your {{ option.name }}</option>
-									{% for value in option.values %}
-										<option value="{{ value }}">{{ value }}</option>
-									{% endfor %}
-								</select>
-							</div>
-						{% endif %}
-					{% endfor %}
-
-					<button type="button" class="add-to-cart-btn js-add-to-cart" disabled>
-						<span class="btn-label">Add to cart</span> <span>&rarr;</span>
-					</button>
-				</div>
-			</div>
-
-			<!-- Full variant data rendered directly by Liquid - no JSON parsing needed in JS -->
-			<div class="variant-list" hidden>
-				{% for variant in product.variants %}
-					<div
-						class="variant-item"
-						data-option1="{{ variant.option1 }}"
-						data-option2="{{ variant.option2 }}"
-						data-id="{{ variant.id }}"
-						data-price="{{ variant.price }}"
-						data-available="{{ variant.available }}"
-						data-image="{{ variant.featured_image.src | default: product.featured_image | img_url: 'master' }}"
-					></div>
-				{% endfor %}
-			</div>
-		</div>
-	{% endif %}
+        </div>
 {% endfor %}
+    </div>
+    </div>
+     {%for block in section.blocks %}  
+            {% assign product = block.settings.product %} 
+    <div class="quick-view-content">
+        <div class="close">
+            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M4.24219 4.24279L12.7275 12.7281" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+<path d="M4.24219 12.7278L12.7275 4.24249" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"/>
+</svg>
 
-<script>
-(function () {
-	var overlay = document.getElementById('qvOverlay');
+        </div>
+        <div class="popupcontent">
+            <div class="product-image">
+                 <div class="product_image">
+                    <img src="{{ product.featured_image | img_url : 'master' }}">
+                </div>
+            </div>
+            <div class="product-info">
+                <h3>{{ product.title }}</h3>
+                <span>{{ product.price | money}}</span>
+                <p>{{ product.description }}</p>
+            </div>
 
-	function closeAll() {
-		document.querySelectorAll('.quick-view-content.active').forEach(function (el) {
-			el.classList.remove('active');
-		});
-		overlay.classList.remove('active');
-		document.body.style.overflow = '';
-	}
+        </div>
+        {% for option in product.options_with_values %}
+    {% if option.name contains 'Color' or option.name contains 'color' %}
+   
+    <div class="colorvariant">
+         {{ option.name }}
+        {% for value in option.values %}
+            <input type="radio" value="{{ value }}" id="{{ value }}" name="{{ option.name }}">
+            <label for="{{ value }}">{{ value }}</label>
+            {% endfor %}
+    </div>
+{% else %}
+    {% endif %}
+    {% endfor %}
+    </div>
 
-	document.querySelectorAll('.js-qv-open').forEach(function (btn) {
-		btn.addEventListener('click', function () {
-			closeAll();
-			var target = document.getElementById(btn.dataset.target);
-			if (target) {
-				target.classList.add('active');
-				overlay.classList.add('active');
-				document.body.style.overflow = 'hidden';
-			}
-		});
-	});
-
-	document.querySelectorAll('.js-qv-close').forEach(function (btn) {
-		btn.addEventListener('click', closeAll);
-	});
-	overlay.addEventListener('click', closeAll);
-	document.addEventListener('keydown', function (e) {
-		if (e.key === 'Escape') closeAll();
-	});
-
-	document.querySelectorAll('.quick-view-content').forEach(function (popup) {
-		var variantItems = popup.querySelectorAll('.variant-item');
-		var priceEl = popup.querySelector('.qv-price');
-		var imageEl = popup.querySelector('.qv-image');
-		var addBtn = popup.querySelector('.js-add-to-cart');
-		var addBtnLabel = addBtn.querySelector('.btn-label');
-		var colorInputs = popup.querySelectorAll('.colorvariant input[type="radio"]');
-		var sizeSelect = popup.querySelector('.sizevariant select');
-
-		function selectedColor() {
-			var checked = popup.querySelector('.colorvariant input[type="radio"]:checked');
-			return checked ? checked.value : '';
-		}
-
-		function selectedSize() {
-			return sizeSelect ? sizeSelect.value : '';
-		}
-
-		function updateVariant() {
-			var hasColor = colorInputs.length > 0;
-			var hasSize = !!sizeSelect;
-			var color = selectedColor();
-			var size = selectedSize();
-
-			var ready = (!hasColor || color) && (!hasSize || size);
-			var match = null;
-
-			if (ready) {
-				variantItems.forEach(function (item) {
-					var colorOk = !hasColor || item.dataset.option1 === color;
-					var sizeOk = !hasSize || item.dataset.option2 === size;
-					if (colorOk && sizeOk) match = item;
-				});
-			}
-
-			if (match) {
-				priceEl.textContent = '$' + (match.dataset.price / 100).toFixed(2);
-				imageEl.src = match.dataset.image;
-				addBtn.disabled = match.dataset.available !== 'true';
-				addBtn.dataset.variantId = match.dataset.id;
-				addBtnLabel.textContent = match.dataset.available === 'true' ? 'Add to cart' : 'Sold out';
-			} else {
-				addBtn.disabled = true;
-				addBtn.dataset.variantId = '';
-				addBtnLabel.textContent = 'Add to cart';
-			}
-		}
-
-		colorInputs.forEach(function (input) {
-			input.addEventListener('change', updateVariant);
-		});
-		if (sizeSelect) sizeSelect.addEventListener('change', updateVariant);
-
-		updateVariant();
-
-		addBtn.addEventListener('click', function () {
-			var variantId = addBtn.dataset.variantId;
-			if (!variantId) return;
-			addBtnLabel.textContent = 'Adding...';
-			fetch('/cart/add.js', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ items: [{ id: variantId, quantity: 1 }] })
-			})
-				.then(function (res) { return res.json(); })
-				.then(function () {
-					addBtnLabel.textContent = 'Added!';
-					setTimeout(function () { addBtnLabel.textContent = 'Add to cart'; }, 1500);
-				})
-				.catch(function () {
-					addBtnLabel.textContent = 'Error - try again';
-				});
-		});
-	});
-})();
-</script>
+{% endfor %}
 
 {% schema %}
 {
 	"name": "Products Grid",
 	"settings": [
 		{
-			"type": "text",
-			"id": "title",
-			"label": "Title"
-		}
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+        },
 	],
-	"blocks": [
+    "blocks": [
+        {
+        "type": "product",
+        "name": "product",
+        "settings": [
 		{
-			"type": "product",
-			"name": "Product",
-			"settings": [
-				{
-					"type": "product",
-					"id": "product",
-					"label": "Linked product"
-				},
-				{
-					"type": "range",
-					"id": "x_position",
-					"label": "Hotspot horizontal position",
-					"min": 0,
-					"max": 100,
-					"step": 1,
-					"default": 50
-				},
-				{
-					"type": "range",
-					"id": "y_position",
-					"label": "Hotspot vertical position",
-					"min": 0,
-					"max": 100,
-					"step": 1,
-					"default": 50
-				}
-			]
-		}
+        "type": "product",
+        "id": "product",
+        "label": "Linked product"
+        },
+        {
+        "type": "range",
+        "id": "x_position",
+        "label": "Hotspot horizontal Position",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 50
+        },{
+        "type": "range",
+        "id": "y_position",
+        "label": "Hotspot vertical Position",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 50
+        }
 	],
+        }
+    ],
+    
 	"presets": [
 		{
 			"name": "Products Grid"
