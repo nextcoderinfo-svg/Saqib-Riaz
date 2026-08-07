@@ -12,9 +12,10 @@
 
 .main-text-content {
 	position: absolute;
-	left: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 100%;
 	bottom: 18%;
-	max-width: 600px;
 	text-align: left;
 	z-index: 2;
 }
@@ -22,11 +23,13 @@
 	font-size: 70px;
 	font-weight: 500;
 	margin: 0;
+	max-width: 600px;
 }
 .content p {
 	font-size: 20px;
 	line-height: 28px;
 	margin: 10px 0 0;
+	max-width: 600px;
 }
 
 
@@ -42,7 +45,9 @@
 
 .banner-button-overlay {
 	position: absolute;
-	left: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 100%;
 	bottom: 8%;
 	z-index: 2;
 }
@@ -74,7 +79,8 @@
 	.heading h2 {
 		font-size: 48px;
 	}
-	.main-text-content {
+	.heading h2,
+	.content p {
 		max-width: 380px;
 	}
 	.content p {
@@ -86,12 +92,19 @@
 @media only screen and (max-width: 749px) {
 	.main-text-content {
 		position: static;
+		left: auto;
+		transform: none;
+		width: auto;
 		max-width: 100%;
 		text-align: center;
 		padding: 20px 16px 10px;
 	}
 	.heading h2 {
 		font-size: 32px;
+	}
+	.heading h2,
+	.content p {
+		max-width: 100%;
 	}
 	.content p {
 		font-size: 15px;
@@ -101,6 +114,7 @@
 		left: 50%;
 		bottom: 6%;
 		transform: translateX(-50%);
+		width: auto;
 	}
 }
 </style>
