@@ -92,6 +92,17 @@
     },
     "products_grid_LFLYc9": {
       "type": "products-grid",
+      "blocks": {
+        "product_tiiiEJ": {
+          "type": "product",
+          "settings": {
+            "product": "black-leather-bag"
+          }
+        }
+      },
+      "block_order": [
+        "product_tiiiEJ"
+      ],
       "name": "Products Grid",
       "settings": {}
     }
