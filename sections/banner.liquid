@@ -6,25 +6,15 @@
 .inner-banner {
 	position: relative;
 }
-.banner-image img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	display: block;
-}
-.main-content {
+
+/* Text block (heading + paragraph) */
+.main-text-content {
 	position: absolute;
-	top: 0;
 	left: 0;
-	width: 100%;
-	height: 100%;
-}
-.overlay-content {
-	position: absolute;
-	bottom: 10%;
-	left: 0;
+	bottom: 18%;
 	max-width: 500px;
 	text-align: left;
+	z-index: 2;
 }
 .heading h2 {
 	font-size: 70px;
@@ -34,7 +24,25 @@
 .content p {
 	font-size: 20px;
 	line-height: 28px;
-	margin: 10px 0 20px;
+	margin: 10px 0 0;
+}
+
+/* Image wrapper - button overlay is positioned relative to THIS, not the text */
+.image-wrap {
+	position: relative;
+}
+.banner-image img {
+	width: 100%;
+	display: block;
+	object-fit: cover;
+}
+
+/* Button overlay - always sits on top of the image, bottom-anchored */
+.banner-button-overlay {
+	position: absolute;
+	left: 0;
+	bottom: 8%;
+	z-index: 2;
 }
 .shop-btn a {
 	background: #000;
@@ -51,6 +59,7 @@
 .shop-btn svg {
 	width: 20px;
 }
+
 .short-text {
 	font-size: 16px;
 	text-align: center;
@@ -63,7 +72,7 @@
 	.heading h2 {
 		font-size: 48px;
 	}
-	.overlay-content {
+	.main-text-content {
 		max-width: 380px;
 	}
 	.content p {
@@ -72,26 +81,14 @@
 }
 
 /* ---------- Mobile ---------- */
+/* Heading + text drop into normal flow ABOVE the image.
+   Button stays absolutely positioned as an overlay on the image (bottom only). */
 @media only screen and (max-width: 749px) {
-	.inner-banner {
-		min-height: 500px;
-	}
-	.banner-image {
-		height: 100%;
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-	}
-	.overlay-content {
-		position: absolute;
-		top: 8%;
-		bottom: auto;
-		left: 50%;
-		transform: translateX(-50%);
-		max-width: 90%;
-		width: 100%;
+	.main-text-content {
+		position: static;
+		max-width: 100%;
 		text-align: center;
+		padding: 20px 16px 10px;
 	}
 	.heading h2 {
 		font-size: 32px;
@@ -100,16 +97,27 @@
 		font-size: 15px;
 		line-height: 22px;
 	}
-	.shop-btn {
-		display: flex;
-		justify-content: center;
+	.banner-button-overlay {
+		left: 50%;
+		bottom: 6%;
+		transform: translateX(-50%);
 	}
 }
 </style>
 
 <div class="main-banner">
 	<div class="inner-banner">
-		<div class="banner-image">
+
+		<div class="main-text-content page-width">
+			<div class="heading">
+				<h2>{{ section.settings.title }}</h2>
+			</div>
+			<div class="content">
+				{{ section.settings.content }}
+			</div>
+		</div>
+
+		<div class="image-wrap">
 			{% if section.settings.banner-image %}
 				<picture>
 					{% if section.settings.banner-image-mobile %}
@@ -122,15 +130,8 @@
 					>
 				</picture>
 			{% endif %}
-		</div>
-		<div class="main-content page-width">
-			<div class="overlay-content">
-				<div class="heading">
-					<h2>{{ section.settings.title }}</h2>
-				</div>
-				<div class="content">
-					{{ section.settings.content }}
-				</div>
+
+			<div class="banner-button-overlay page-width">
 				<div class="shop-btn">
 					<a href="{{ section.settings.shop-btn-url }}">
 						{{ section.settings.shop-btn-text }}
@@ -142,7 +143,9 @@
 					</a>
 				</div>
 			</div>
+
 		</div>
+
 	</div>
 	<div class="short-text">
 		{{ section.settings.short-text }}
