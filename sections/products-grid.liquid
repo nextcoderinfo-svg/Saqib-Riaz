@@ -250,7 +250,14 @@
 		</div>
 	{% endif %}
 {% endfor %}
-
+<script>
+	var overlay = document.getElementById('qvOverlay');
+	function closeAll(){
+	document.querySelectorAll('.quick-view-content.active').forEach(function (el){
+	el.classList.remove('active');
+	});
+	}
+</script>
 
 
 {% schema %}
