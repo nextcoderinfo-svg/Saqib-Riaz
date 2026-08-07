@@ -1,5 +1,4 @@
 <style>
-	
 .close {
 	cursor: pointer;
 	position: absolute;
@@ -228,34 +227,46 @@
 {% for option in product.options_with_values %}
 						{% if option.name contains 'Color' or option.name contains 'color' %}
 						<div class="colorvariant" data-option-position="{{ option.position }}">
-  <div class="option-label">{{ option.name }}</div>
-  <div class="option-values">
-    {% for value in option.values %}
-      {% assign color_hex = '#ccc' %}
-      {% case value %}
-        {% when 'Black' %}{% assign color_hex = '#000000' %}
-        {% when 'White' %}{% assign color_hex = '#ffffff' %}
-        {% when 'Blue' %}{% assign color_hex = '#0000ff' %}
-        {% when 'Navy' %}{% assign color_hex = '#000080' %}
-        {% when 'Red' %}{% assign color_hex = '#ff0000' %}
-        {% when 'Green' %}{% assign color_hex = '#008000' %}
-        {% when 'Grey', 'Gray' %}{% assign color_hex = '#808080' %}
-        {% when 'Pink' %}{% assign color_hex = '#ffc0cb' %}
-        {% when 'Brown' %}{% assign color_hex = '#8b4513' %}
-        {% when 'Yellow' %}{% assign color_hex = '#ffff00' %}
-      {% endcase %}
-      <input
-        type="radio"
-        value="{{ value }}"
-        id="opt-{{ product.id }}-{{ option.position }}-{{ forloop.index }}"
-        name="opt-{{ product.id }}-{{ option.position }}"
-      >
-      <label for="opt-{{ product.id }}-{{ option.position }}-{{ forloop.index }}">
-        <span class="color-swatch" style="background-color: {{ color_hex }};"></span>
-        {{ value }}
-      </label>
-    {% endfor %}
-  </div>
+	<div class="option-label">{{ option.name }}</div>
+	<div class="option-values">
+		{% for value in option.values %}
+			{% assign swatch_color = '#ccc' %}
+			{% if value contains 'Black' %}
+				{% assign swatch_color = '#000000' %}
+			{% elsif value contains 'White' %}
+				{% assign swatch_color = '#ffffff' %}
+			{% elsif value contains 'Blue' %}
+				{% assign swatch_color = '#1e3a8a' %}
+			{% elsif value contains 'Red' %}
+				{% assign swatch_color = '#dc2626' %}
+			{% elsif value contains 'Green' %}
+				{% assign swatch_color = '#16a34a' %}
+			{% elsif value contains 'Yellow' %}
+				{% assign swatch_color = '#eab308' %}
+			{% elsif value contains 'Grey' or value contains 'Gray' %}
+				{% assign swatch_color = '#6b7280' %}
+			{% elsif value contains 'Brown' %}
+				{% assign swatch_color = '#78350f' %}
+			{% elsif value contains 'Pink' %}
+				{% assign swatch_color = '#ec4899' %}
+			{% elsif value contains 'Purple' %}
+				{% assign swatch_color = '#7c3aed' %}
+			{% elsif value contains 'Orange' %}
+				{% assign swatch_color = '#f97316' %}
+			{% endif %}
+
+			<input
+				type="radio"
+				value="{{ value }}"
+				id="opt-{{ product.id }}-{{ option.position }}-{{ forloop.index }}"
+				name="opt-{{ product.id }}-{{ option.position }}"
+			>
+			<label for="opt-{{ product.id }}-{{ option.position }}-{{ forloop.index }}">
+				<span class="color-swatch" style="background-color: {{ swatch_color }};"></span>
+				{{ value }}
+			</label>
+		{% endfor %}
+	</div>
 </div>
 						{% else %}
 							<div class="sizevariant" data-option-position="{{ option.position }}">
