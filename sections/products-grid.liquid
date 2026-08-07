@@ -231,9 +231,10 @@
   <div class="option-values">
     {% for value in option.values %}
       {% assign color_hex = '#ccc' %}
+      {% assign is_light = false %}
       {% case value %}
         {% when 'Black' %}{% assign color_hex = '#000000' %}
-        {% when 'White' %}{% assign color_hex = '#ffffff' %}
+        {% when 'White' %}{% assign color_hex = '#ffffff' %}{% assign is_light = true %}
         {% when 'Blue' %}{% assign color_hex = '#0000ff' %}
         {% when 'Navy' %}{% assign color_hex = '#000080' %}
         {% when 'Red' %}{% assign color_hex = '#ff0000' %}
@@ -241,7 +242,7 @@
         {% when 'Grey', 'Gray' %}{% assign color_hex = '#808080' %}
         {% when 'Pink' %}{% assign color_hex = '#ffc0cb' %}
         {% when 'Brown' %}{% assign color_hex = '#8b4513' %}
-        {% when 'Yellow' %}{% assign color_hex = '#ffff00' %}
+        {% when 'Yellow' %}{% assign color_hex = '#ffff00' %}{% assign is_light = true %}
       {% endcase %}
       <input
         type="radio"
@@ -251,7 +252,7 @@
       >
       <label
         for="opt-{{ product.id }}-{{ option.position }}-{{ forloop.index }}"
-        style="border-left: 5px solid {{ color_hex }};"
+        style="border-left: 5px solid {{ color_hex }}; {% if is_light %}box-shadow: inset 4px 0 0 0 #ccc;{% endif %}"
       >{{ value }}</label>
     {% endfor %}
   </div>
