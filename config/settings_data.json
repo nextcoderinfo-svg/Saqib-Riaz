@@ -138,6 +138,15 @@
         "settings": {
           "color_scheme": "scheme-1"
         }
+      },
+      "navbar": {
+        "type": "navbar",
+        "settings": {
+          "logo": "shopify://shop_images/logo.png",
+          "caption": "",
+          "button-text": "",
+          "button-url": ""
+        }
       }
     },
     "content_for_index": [],
