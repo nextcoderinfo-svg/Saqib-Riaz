@@ -103,7 +103,7 @@
     {{ option.name }}
     <div class="colorvariant">
         {% for value in option.values %}
-            <input type="radio" value="{{ value }}" for="custom{{ value }}">
+            <input type="radio" value="{{ value }}" for="custom{{ value }}" name="{{ option.name }}">
             <label id="custom{{ value }}">{{ value }}</label>
             {% endfor %}
     </div>
