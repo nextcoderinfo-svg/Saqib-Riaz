@@ -4,11 +4,12 @@
 	justify-content: space-between;
 	align-items: center;
 }
+.logo-link{display: flex;}
 .top-navbar {
 	background: #F5F5F5;
 	padding: 14px 0px;
 }
-.logo{width: 150px;display: flex;}
+.logo{width: 150px;}
 .logo img{width: 100%;}
 .cta-button a {
 	background: #FFF544;
@@ -61,7 +62,7 @@ width: 20px;
   <div class="navbar-wraper">
     <div class="logo-wraper">
         <div class="logo">
-            <a href="/">
+            <a href="/" class="logo-link">
             <img src="{{ section.settings.logo | img_url : 'master' }}">
             </a>
         </div>
