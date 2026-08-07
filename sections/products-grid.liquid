@@ -103,7 +103,10 @@
                 <span>{{ product.price | money}}</span>
                 <p>{{ product.description }}</p>
             </div>
-{% for option in product.options_with_values %}
+
+        </div>
+    </div>
+    {% for option in product.options_with_values %}
     {% if option.name contains 'Color' or option.name contains 'color' %}
    
     <div class="colorvariant">
@@ -116,8 +119,6 @@
 {% else %}
     {% endif %}
     {% endfor %}
-        </div>
-    </div>
 </div>
 {% endfor %}
 
