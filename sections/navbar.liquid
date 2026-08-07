@@ -28,8 +28,18 @@
 	z-index: 0;
 	transition: color 0.35s ease;
 }
-.cta-button a::before{
-content: "";
+.cta-button a::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: #1a1a1a;
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 0.35s ease;
+	z-index: -1;
 }
 .cta-button svg {
 	width: 18px;
