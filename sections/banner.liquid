@@ -46,6 +46,20 @@
 </div>    
 </div>
 
+<div class="main-banner">
+    <div class="inner-banner">
+        <div class="banner-image">
+            {% if section.settings.banner-image  %}
+             <img src="{{ section.settings.banner-image | img_url : 'master' }}">
+             {% endif %}
+        </div>
+    </div>
+</div>
+
+
+
+
+
 
 {% schema %}
 {
@@ -70,7 +84,12 @@
     "type": "url",
     "id": "button-url",
     "label": "Button URL"
-    }
+    },
+    {
+    "type": "image_picker",
+    "id": "banner-image",
+    "label": "Upload Banner Image"
+    },
   ],
   "presets": [
     {
