@@ -226,6 +226,7 @@
 
 								{%for value in option.values %}
 									<input type=" radio" value="{{value }}" id="opt-{{product.id }}-{{option.position }}-{{forloop.index }}" name="option-{{product.id }}-{{ option.position}}">
+									<label for="opt-{{product.id }}-{{option.position }}-{{forloop.index }}"{{value }}></label>
 									{% endfor %}
 							</div>
 						</div>
