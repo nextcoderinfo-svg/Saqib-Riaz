@@ -104,11 +104,18 @@
           "settings": {
             "product": "blue-silk-tuxedo"
           }
+        },
+        "product_Vtnf7j": {
+          "type": "product",
+          "settings": {
+            "product": "chequered-red-shirt"
+          }
         }
       },
       "block_order": [
         "product_tiiiEJ",
-        "product_jrqR99"
+        "product_jrqR99",
+        "product_Vtnf7j"
       ],
       "name": "Products Grid",
       "settings": {}
