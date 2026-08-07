@@ -4,7 +4,7 @@
   <div class="navbar-wraper">
     <div class="logo-wraper">
         <div class="logo">
-            <img src="">
+            <img src="{{ section.settings.logo | img_url : 'master' }}">
         </div>
     </div>
     <div class="caption">
@@ -23,7 +23,11 @@
 {
   "name": "Banner",
   "settings": [
-    
+    {
+    "type": "image_picker",
+    "id": "logo",
+    "label": "Upload Logo"
+    }
   ],
   "presets": [
     {
