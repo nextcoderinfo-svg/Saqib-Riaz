@@ -145,7 +145,7 @@
           "logo": "shopify://shop_images/logo.png",
           "caption": "Find the ideal gift for your loved ones.",
           "button-text": "Choose Gift",
-          "button-url": ""
+          "button-url": "#"
         }
       }
     },
