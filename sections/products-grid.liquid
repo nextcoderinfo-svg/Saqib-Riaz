@@ -20,7 +20,7 @@
 <div class="grid-wraper">
     <div class="grid-inner page-width">
         <div class="grid-heading">
-            <h2>Tisso vison in the wild</h2>
+            <h2>{{section.settings.title }}</h2>
         </div>
         <div class="grid-container">
          {%for block in section.blocks %}  
@@ -47,7 +47,11 @@
 {
 	"name": "Products Grid",
 	"settings": [
-		
+		{
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+        },
 	],
     "blocks": [
         {
