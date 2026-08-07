@@ -133,6 +133,14 @@
 				{{ section.settings.content }}
 			</div>
 		</div>
+				<div class="mobile-content">
+			<div class="heading">
+				<h2>{{ section.settings.title-mobile }}</h2>
+			</div>
+			<div class="content">
+				{{ section.settings.content-mobile }}
+			</div>
+		</div>
 		</div>
 
 		<div class="image-wrap">
@@ -189,6 +197,16 @@
 			"type": "richtext",
 			"id": "content",
 			"label": "content"
+		},
+		{
+			"type": "text",
+			"id": "title-mobile",
+			"label": "Heading (Mobile)"
+		},
+		{
+			"type": "richtext",
+			"id": "content-mobile",
+			"label": "content (Mobile)"
 		},
 		{
 			"type": "text",
