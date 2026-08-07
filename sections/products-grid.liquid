@@ -281,6 +281,7 @@ function valueOf(wrap){
 var radio = wrap.querySelectorAll('input[type="radio"]: checked');
 if (radio) return radio.value;
 var select = wrap.querySelectorAll('select');
+return select ? select.value;
 
 }
 });
