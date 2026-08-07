@@ -213,6 +213,8 @@
 					<span class="qv-price">{{ product.price | money }}</span>
 					<p>{{ product.description }}</p>
 
+		
+		</div>
 					{% for option in product.options_with_values %}
 						{% if option.name contains 'Color' or option.name contains 'color' %}
 							<div class="colorvariant" data-option-position="{{ option.position }}">
@@ -249,7 +251,6 @@
 				</div>
 			</div>
 
-			<!-- Full variant data rendered directly by Liquid - no JSON parsing needed in JS -->
 			<div class="variant-list" hidden>
 				{% for variant in product.variants %}
 					<div
@@ -263,7 +264,6 @@
 					></div>
 				{% endfor %}
 			</div>
-		</div>
 	{% endif %}
 {% endfor %}
 
