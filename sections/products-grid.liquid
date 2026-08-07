@@ -99,7 +99,15 @@
                 <p>{{ product.description }}</p>
             </div>
 {% for option in product.options_with_values %}
+    {% if option.name contains 'Color' or 'color' %}
     {{ option.name }}
+    <div class="colorvariant">
+        {% for value in option.values %}
+            <input type="radio" value="{{ value }}" for="custom{{ value }}">
+            <label id="custom{{ value }}">{{ value }}</label>
+            {% endfor %}
+    </div>
+    {% endif %}
     {% endfor %}
         </div>
     </div>
