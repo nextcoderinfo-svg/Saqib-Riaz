@@ -143,7 +143,7 @@
         "type": "navbar",
         "settings": {
           "logo": "shopify://shop_images/logo.png",
-          "caption": "",
+          "caption": "Find the ideal gift for your loved ones.",
           "button-text": "Choose Gift",
           "button-url": ""
         }
