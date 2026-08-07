@@ -256,6 +256,15 @@
 	document.querySelectorAll('.quick-view-content.active').forEach(function (el){
 	el.classList.remove('active');
 	document.body.style.overflow = '';
+	}
+	document.querySelectorAll('.js-qv-open').forEach(function (btn){
+	btn.addEventListner('click', function(){
+	closeAll();
+	var target = document.getElementById(btn.dataset.target);
+	if(target){
+	target.classList.add('active');
+	}
+	});
 	});
 	
 </script>
