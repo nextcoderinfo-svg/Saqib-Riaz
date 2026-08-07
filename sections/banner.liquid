@@ -1,131 +1,198 @@
 <style>
 
-
-
-.banner-image img {
+.main-banner {
 	width: 100%;
-	height: 100%;
 }
 .inner-banner {
 	position: relative;
 }
+.banner-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+.main-content {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
 .overlay-content {
 	position: absolute;
-	bottom: 10%;max-width: 500px;
+	bottom: 10%;
+	left: 0;
+	max-width: 500px;
+	text-align: left;
 }
 .heading h2 {
 	font-size: 70px;
-	font-weight: 500;margin: 0;
+	font-weight: 500;
+	margin: 0;
 }
 .content p {
 	font-size: 20px;
 	line-height: 28px;
+	margin: 10px 0 20px;
 }
 .shop-btn a {
 	background: #000;
 	color: #fff;
 	text-decoration: none;
-	padding: 10px;
+	padding: 10px 16px;
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
 }
 .shop-btn svg path {
 	fill: #fff;
 }
 .shop-btn svg {
-width: 20px;
+	width: 20px;
 }
 .short-text {
 	font-size: 16px;
 	text-align: center;
-    	background: #F5F5F5;padding: 6px 0px;
+	background: #F5F5F5;
+	padding: 6px 0px;
 }
-@media only screen and (max-width: 1000px){
-.heading h2 {
-  font-size: 48px;
+
+/* ---------- Tablet ---------- */
+@media only screen and (max-width: 1000px) {
+	.heading h2 {
+		font-size: 48px;
+	}
+	.overlay-content {
+		max-width: 380px;
+	}
+	.content p {
+		font-size: 16px;
+	}
 }
-.overlay-content {
-	max-width: 380px;
-}
-.content p {
-	font-size: 16px;
-}
+
+/* ---------- Mobile ---------- */
+@media only screen and (max-width: 749px) {
+	.inner-banner {
+		min-height: 500px;
+	}
+	.banner-image {
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+	}
+	.overlay-content {
+		position: absolute;
+		top: 8%;
+		bottom: auto;
+		left: 50%;
+		transform: translateX(-50%);
+		max-width: 90%;
+		width: 100%;
+		text-align: center;
+	}
+	.heading h2 {
+		font-size: 32px;
+	}
+	.content p {
+		font-size: 15px;
+		line-height: 22px;
+	}
+	.shop-btn {
+		display: flex;
+		justify-content: center;
+	}
 }
 </style>
 
-
-
 <div class="main-banner">
-    <div class="inner-banner">
-        <div class="banner-image">
-            {% if section.settings.banner-image  %}
-             <img src="{{ section.settings.banner-image | img_url : 'master' }}">
-             {% endif %}
-        </div>
-        <div class="main-content page-width">
-        <div class="overlay-content">
-            <div class="heading">
-                <h2>{{ section.settings.title }}</h2>
-            </div>
-             <div class="content">
-                {{ section.settings.content }}
-             </div>
-              <div class="shop-btn">
-<a href="{{ section.settings.shop-btn-url }}">{{section.settings.shop-btn-text}} <span class="btn-arrow"><svg width="26" height="12" viewBox="0 0 26 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0.75 4.77298L7.37629e-08 4.77298L-7.37629e-08 6.27298L0.75 6.27298L0.75 4.77298ZM25.2803 6.05331C25.5732 5.76042 25.5732 5.28554 25.2803 4.99265L20.5074 0.21968C20.2145 -0.073213 19.7396 -0.0732131 19.4467 0.21968C19.1538 0.512574 19.1538 0.987447 19.4467 1.28034L23.6893 5.52298L19.4467 9.76562C19.1538 10.0585 19.1538 10.5334 19.4467 10.8263C19.7396 11.1192 20.2145 11.1192 20.5074 10.8263L25.2803 6.05331ZM0.75 6.27298L24.75 6.27298L24.75 4.77298L0.75 4.77298L0.75 6.27298Z" fill="black"/>
-</svg></span></a>
-              </div>
-        </div>
-    </div>
-    </div>
-    <div class="short-text">
-        {{section.settings.short-text }}
-    </div>
+	<div class="inner-banner">
+		<div class="banner-image">
+			{% if section.settings.banner-image %}
+				<picture>
+					{% if section.settings.banner-image-mobile %}
+						<source media="(max-width: 749px)" srcset="{{ section.settings.banner-image-mobile | img_url: 'master' }}">
+					{% endif %}
+					<img
+						src="{{ section.settings.banner-image | img_url: 'master' }}"
+						alt="{{ section.settings.title | escape }}"
+						loading="lazy"
+					>
+				</picture>
+			{% endif %}
+		</div>
+		<div class="main-content page-width">
+			<div class="overlay-content">
+				<div class="heading">
+					<h2>{{ section.settings.title }}</h2>
+				</div>
+				<div class="content">
+					{{ section.settings.content }}
+				</div>
+				<div class="shop-btn">
+					<a href="{{ section.settings.shop-btn-url }}">
+						{{ section.settings.shop-btn-text }}
+						<span class="btn-arrow">
+							<svg width="26" height="12" viewBox="0 0 26 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M0.75 4.77298L7.37629e-08 4.77298L-7.37629e-08 6.27298L0.75 6.27298L0.75 4.77298ZM25.2803 6.05331C25.5732 5.76042 25.5732 5.28554 25.2803 4.99265L20.5074 0.21968C20.2145 -0.073213 19.7396 -0.0732131 19.4467 0.21968C19.1538 0.512574 19.1538 0.987447 19.4467 1.28034L23.6893 5.52298L19.4467 9.76562C19.1538 10.0585 19.1538 10.5334 19.4467 10.8263C19.7396 11.1192 20.2145 11.1192 20.5074 10.8263L25.2803 6.05331ZM0.75 6.27298L24.75 6.27298L24.75 4.77298L0.75 4.77298L0.75 6.27298Z" fill="black"/>
+							</svg>
+						</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="short-text">
+		{{ section.settings.short-text }}
+	</div>
 </div>
-
-
-
-
-
 
 {% schema %}
 {
-  "name": "Banner",
-  "settings": [
-   
-    {
-    "type": "image_picker",
-    "id": "banner-image",
-    "label": "Upload Banner Image"
-    },
-    {
-    "type": "text",
-    "id": "title",
-    "label": "Heading"
-    },
-    {
-    "type": "richtext",
-    "id": "content",
-    "label": "content"
-    },
-    {
-    "type": "text",
-    "id": "shop-btn-text",
-    "label": "Button Text"
-    },
-     {
-    "type": "url",
-    "id": "shop-btn-url",
-    "label": "Button URL"
-    },
-    {
-    "type": "text",
-    "id": "short-text",
-    "label": "Short Text"
-    }
-  ],
-  "presets": [
-    {
-      "name": "Banner"
-    }
-  ]
+	"name": "Banner",
+	"settings": [
+		{
+			"type": "image_picker",
+			"id": "banner-image",
+			"label": "Upload Banner Image (Desktop)"
+		},
+		{
+			"type": "image_picker",
+			"id": "banner-image-mobile",
+			"label": "Upload Banner Image (Mobile) - optional, falls back to desktop image"
+		},
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Heading"
+		},
+		{
+			"type": "richtext",
+			"id": "content",
+			"label": "content"
+		},
+		{
+			"type": "text",
+			"id": "shop-btn-text",
+			"label": "Button Text"
+		},
+		{
+			"type": "url",
+			"id": "shop-btn-url",
+			"label": "Button URL"
+		},
+		{
+			"type": "text",
+			"id": "short-text",
+			"label": "Short Text"
+		}
+	],
+	"presets": [
+		{
+			"name": "Banner"
+		}
+	]
 }
 {% endschema %}
