@@ -88,9 +88,9 @@
         "button-url": "",
         "banner-image": "shopify://shop_images/Group_1000008197.png",
         "title": "The Gift Guide",
-        "content": "",
-        "shop-btn-text": "",
-        "shop-btn-url": ""
+        "content": "<p>Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.</p>",
+        "shop-btn-text": "Shop Now",
+        "shop-btn-url": "#"
       }
     }
   },
